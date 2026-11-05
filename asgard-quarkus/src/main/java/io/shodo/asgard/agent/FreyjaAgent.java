@@ -10,6 +10,11 @@ import io.shodo.asgard.service.GodListeners;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
+
+import java.time.temporal.ChronoUnit;
 
 // TODO 3: multi model - Freyja's system message
 ///**
@@ -47,6 +52,9 @@ public interface FreyjaAgent {
 //            outputKey = "emotional",
 //            description = "Brainstorms ideas people would love for one specific challenge, " +
 //            "led by the heart. Not an emotional support agent and not a sentiment analyzer.")
+//    @Timeout(value = 30, unit = ChronoUnit.SECONDS)
+//    @Retry(maxRetries = 2, delay = 1, delayUnit = ChronoUnit.SECONDS)
+//    @Fallback(FreyjaFallback.class)
 //    AgentAnswer speak(@V("prompt") String prompt);
 //
 //    /** Reports Freyja's turn to the listener chosen in {@link GodListeners}: SSE stream or console. */
