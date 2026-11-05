@@ -3,6 +3,13 @@
 A multi-agent brainstorming app. A council of Norse gods, each wearing one of Edward de Bono's Six Thinking Hats,
 debates your question, and Odin gives the verdict.
 
+## Demo video
+
+I promised my audience at Øredev that I'd share a video of my demo, because it didn't work live. Here it is:
+[watch the demo](assets/video.mp4) (3 min 33 s).
+
+## Project structure
+
 | Folder | Contents | Details |
 |---|---|---|
 | [`asgard-quarkus`](asgard-quarkus) | Back end: Quarkus and LangChain4j | [README](asgard-quarkus/README.md) |
