@@ -9,16 +9,12 @@ debates your question, and Odin gives the verdict.
 | [`asgard-react`](asgard-react) | Front end: React, Vite and TypeScript | [README](asgard-react/README.md) |
 | [`docker-compose.yml`](docker-compose.yml) | Local infrastructure: pgvector and Langfuse | See [below](#run-docker-compose) |
 
-> **Parts of the app are still disabled.** Much of the code is commented out behind numbered `TODO` markers
-> (`TODO 1`, `TODO 2`, and so on). Until `TODO 7` is uncommented in `ThingResource`, `/api/thing` returns 404, so the
-> front end loads but can't start a debate. pgvector is only used from `TODO 5` and Langfuse from `TODO 11`.
-
 ## Prerequisites
 
 - Java 25
 - Node.js 20.19+ or 22.12+
 - Docker with Docker Compose
-- An OpenAI API key and an Anthropic API key
+- OpenAI, Anthropic, Tavily and Grok API keys
 
 Maven doesn't need to be installed: the project includes the Maven wrapper.
 
@@ -49,9 +45,9 @@ Each default can be overridden from a `.env` file in the repository root. See
    ```properties
    OPEN_AI_API_KEY=your-openai-key
    ANTHROPIC_API_KEY=your-anthropic-key
+   TAVILY_API_KEY=your-tavily-key
+   GROK_API_KEY=your-grok-key
    ```
-
-   Later steps also need `TAVILY_API_KEY` (`TODO 4`) and `GROK_API_KEY` (`TODO 3`).
 
 2. Start the app in dev mode:
 

@@ -1,10 +1,9 @@
 @langfuseUrl = http://localhost:3000
 
-# Step 11 - observability. Needs step 7 (REST API) and a debate run after step 11 is uncommented.
+# Step 11 - observability. Needs step 7 (REST API) and a debate run.
 # Langfuse runs from ../docker-compose.yml: UI at {{langfuseUrl}}, keys from application.properties.
 
 ### The debates' traces in Langfuse, through its public API
-# TODO 11: observability - Langfuse traces
 GET {{langfuseUrl}}/api/public/traces?limit=5
 Authorization: Basic pk-lf-asgard-local sk-lf-asgard-local
 

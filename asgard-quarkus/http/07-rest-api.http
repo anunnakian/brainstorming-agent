@@ -1,11 +1,10 @@
 @baseUrl = http://localhost:8080
 
-# Step 7 - REST API. Uncomment each block once "TODO 7" is uncommented in ThingResource: before that, every request is a 404.
+# Step 7 - REST API.
 # The storm streams server-sent events: start, each god's turn (start, token, end), done.
 # Heimdall's end event carries his sources: web pages from step 4 (tools), documents from step 5 (RAG).
 
 ### Start the Thing - streams the first round of the brainstorm
-# TODO 7: REST API - storm, round 1
 POST {{baseUrl}}/api/thing/storm
 Content-Type: application/json
 Accept: text/event-stream
@@ -15,7 +14,6 @@ Accept: text/event-stream
 }
 
 ### A question the ingested documents can answer - look at Heimdall's sources in his end event
-# TODO 7: REST API - storm on the RAG documents (needs step 5)
 POST {{baseUrl}}/api/thing/storm
 Content-Type: application/json
 Accept: text/event-stream
@@ -25,7 +23,6 @@ Accept: text/event-stream
 }
 
 ### Another round - the gods build on Odin's last picks and push one idea further
-# TODO 7: REST API - storm, round 2
 POST {{baseUrl}}/api/thing/storm
 Content-Type: application/json
 Accept: text/event-stream
@@ -38,7 +35,6 @@ Accept: text/event-stream
 }
 
 ### Missing question -> 400
-# TODO 7: REST API - storm without a question
 POST {{baseUrl}}/api/thing/storm
 Content-Type: application/json
 
@@ -49,7 +45,6 @@ Content-Type: application/json
 %}
 
 ### A next round without the picks or the push -> 400
-# TODO 7: REST API - round 2 without picks or push
 POST {{baseUrl}}/api/thing/storm
 Content-Type: application/json
 

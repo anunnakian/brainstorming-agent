@@ -38,16 +38,15 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- TODO 11: observability - Langfuse and OpenTelemetry -->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkiverse.langfuse</groupId>-->
-<!--            <artifactId>quarkus-langfuse</artifactId>-->
-<!--            <version>0.7.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus</groupId>-->
-<!--            <artifactId>quarkus-opentelemetry</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.quarkiverse.langfuse</groupId>
+            <artifactId>quarkus-langfuse</artifactId>
+            <version>0.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-opentelemetry</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
             <artifactId>quarkus-langchain4j-agentic</artifactId>
@@ -60,24 +59,22 @@
             <groupId>io.quarkiverse.langchain4j</groupId>
             <artifactId>quarkus-langchain4j-anthropic</artifactId>
         </dependency>
-        <!-- TODO 5: RAG - Easy RAG and pgvector -->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkiverse.langchain4j</groupId>-->
-<!--            <artifactId>quarkus-langchain4j-easy-rag</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkiverse.langchain4j</groupId>-->
-<!--            <artifactId>quarkus-langchain4j-pgvector</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-easy-rag</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-pgvector</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
             <artifactId>quarkus-langchain4j-mcp</artifactId>
         </dependency>
-        <!-- TODO 4: tools - Tavily web search tool -->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkiverse.langchain4j</groupId>-->
-<!--            <artifactId>quarkus-langchain4j-tavily</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-tavily</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
