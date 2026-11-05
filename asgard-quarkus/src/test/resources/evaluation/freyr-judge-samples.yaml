@@ -1,0 +1,19 @@
+# Criteria for the AI judge: what the answer must do, whichever ideas Freyr comes up with.
+- name: "meetup attendance"
+  parameters:
+    - "How might we get more people to come to our monthly developer meetup?"
+  expected-output: |
+    Proposes at least two bold ideas for bringing more people to a developer meetup. Each idea says
+    what would actually be done. Mentions no risk or downside, and cites no study or statistic.
+- name: "open source contributors"
+  parameters:
+    - "How might we attract more contributors to our open source project?"
+  expected-output: |
+    Proposes at least two bold ideas for attracting contributors to an open source project. Each idea
+    says what would actually be done. Mentions no risk or downside, and cites no study or statistic.
+- name: "team learning"
+  parameters:
+    - "How might we help our engineering team learn new skills faster?"
+  expected-output: |
+    Proposes at least two bold ideas for helping an engineering team learn faster. Each idea says
+    what would actually be done. Mentions no risk or downside, and cites no study or statistic.

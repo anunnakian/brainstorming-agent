@@ -1,0 +1,22 @@
+# Reference answers: what a good Freyr answer could sound like, compared by cosine similarity.
+- name: "meetup attendance"
+  parameters:
+    - "How might we get more people to come to our monthly developer meetup?"
+  expected-output: |
+    I would turn your meetup into a city-wide developer festival: partner with every local tech
+    company so each one brings a team, and livestream the talks to draw in remote developers. Let
+    attendees vote on the speakers each month, so the whole community feels the evening belongs to them.
+- name: "open source contributors"
+  parameters:
+    - "How might we attract more contributors to our open source project?"
+  expected-output: |
+    I would run a global contribution month: pair every first-time contributor with a maintainer,
+    and publicly celebrate each merged pull request. Then invite your top contributors onto the
+    project's roadmap council, so that newcomers can see a real path from their first fix to leading the project.
+- name: "team learning"
+  parameters:
+    - "How might we help our engineering team learn new skills faster?"
+  expected-output: |
+    I would give every engineer one full day a week to learn by building real projects with new
+    technology. Have them teach what they learn in team demos, and create rotations that send each
+    engineer to work with another team for a month, so skills spread across the whole company.

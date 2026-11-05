@@ -1,0 +1,25 @@
+/* Header controls: the live status and the solid button.
+ * Scoped under .asgard; tokens follow asgard.css. */
+
+.asgard .status { --dot: var(--frost); display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #C9D2D6; white-space: nowrap; }
+.asgard .status b { font-weight: 600; color: var(--ink); }
+.asgard .status-dot { width: 8px; height: 8px; flex-shrink: 0; border-radius: 50%; background: var(--dot); box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot) 18%, transparent); transition: background .3s, box-shadow .3s; }
+.asgard .status-bars { display: inline-flex; align-items: center; gap: 2px; height: 11px; color: var(--dot); opacity: 0; transition: opacity .3s; }
+.asgard .status-bars.on { opacity: 1; }
+.asgard .status-bars i { display: block; width: 3px; height: 100%; border-radius: 2px; background: currentColor; animation: status-eq .9s ease-in-out infinite; }
+.asgard .status-bars i:nth-child(2) { animation-delay: .15s; }
+.asgard .status-bars i:nth-child(3) { animation-delay: .3s; }
+.asgard .status-bars i:nth-child(4) { animation-delay: .45s; }
+@keyframes status-eq { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+.asgard .solid { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 13px; border: 0; border-radius: 9px; background: var(--frost); color: var(--night); font-size: 12.5px; font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none; }
+.asgard .solid:hover { background: #D3E2E7; }
+.asgard .solid:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.asgard .solid svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+@media (max-width: 720px) {
+  .asgard .status { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .asgard .status-bars i { animation: none; }
+}

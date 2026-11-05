@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+/* Asgard: the Thing. Every rule is scoped under .asgard so it can live inside any app. */
+
+.asgard {
+  --night: #0A1016;
+  --night-2: #0E1820;
+  --field: #101C24;
+  --ink: #EEF2F0;
+  --muted: #9AA9B0;
+  --frost: #BFD3DA;
+  --aurora: 111, 227, 176;
+  --line: rgba(191, 211, 218, 0.2);
+  --marble: #DEDBD2;
+  --stone-ink: #1C1B26;
+  --seat: 88px;
+  color-scheme: dark;
+}
+
+.asgard, .asgard * { box-sizing: border-box; }
+.asgard button, .asgard input { font: inherit; }
+.asgard .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.asgard { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background: var(--night); color: var(--ink); font-family: 'Figtree', system-ui, sans-serif; }
+
+/* ---------- header ---------- */
+.asgard .top { flex-shrink: 0; display: flex; align-items: center; gap: 24px; padding: 0 24px; height: 68px; border-bottom: 1px solid var(--line); }
+.asgard .brand { display: flex; align-items: center; gap: 10px; min-width: 200px; font-family: 'Marcellus SC', serif; font-weight: 700; font-size: 19px; letter-spacing: 0.22em; }
+.asgard .question { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
+.asgard .eyebrow { font-family: 'Marcellus SC', serif; font-size: 11px; letter-spacing: 0.24em; color: var(--muted); }
+.asgard .question-text { max-width: 100%; font-size: 16px; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.asgard .now { min-width: 200px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+
+/* ---------- layout ---------- */
+.asgard .body { flex: 1; min-height: 0; display: flex; }
+.asgard .chamber { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+/* ---------- council ---------- */
+.asgard .council { position: relative; flex-shrink: 0; overflow: hidden; padding: 14px 16px 18px; background: radial-gradient(ellipse 55% 70% at 28% -10%, rgba(var(--aurora), 0.20) 0%, rgba(var(--aurora), 0) 70%), radial-gradient(ellipse 50% 60% at 74% -10%, rgba(120, 140, 240, 0.18) 0%, rgba(120, 140, 240, 0) 70%), radial-gradient(ellipse at 50% 0%, #142430 0%, var(--night) 72%); }
+.asgard .council::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 40% 50% at 50% -15%, rgba(var(--aurora), 0.14), rgba(var(--aurora), 0) 70%); animation: aurora 14s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes aurora { from { transform: translateX(-18%); opacity: .6; } to { transform: translateX(18%); opacity: 1; } }
+.asgard .council > .row { z-index: 1; }
+.asgard .council::before { content: ""; position: absolute; left: 6%; right: 6%; top: 58%; height: 100%; border-radius: 50%; border: 1px solid rgba(191, 211, 218, 0.28); pointer-events: none; }
+.asgard .row { position: relative; display: flex; justify-content: center; }
+.asgard .row--seats { gap: clamp(4px, 2.5vw, 40px); margin-top: 6px; }
+
+.asgard .seat { --c: #fff; --aura: 255, 255, 255; display: flex; flex-direction: column; align-items: center; gap: 6px; width: calc(var(--seat) + 56px); padding: 0; border: 0; background: none; color: inherit; transition: opacity .4s, filter .4s; }
+.asgard .seat[data-god="loki"], .asgard .seat[data-god="freyja"] { margin-top: calc(var(--seat) * 0.32); }
+.asgard .seat[data-god="freyr"], .asgard .seat[data-god="hel"] { margin-top: calc(var(--seat) * 0.85); }
+.asgard .seat-face { position: relative; display: block; width: var(--seat); height: var(--seat); }
+.asgard .seat--chair .seat-face { width: calc(var(--seat) * 1.18); height: calc(var(--seat) * 1.18); }
+.asgard .aura { position: absolute; inset: -26%; border-radius: 50%; background: radial-gradient(circle, rgba(var(--aura), 0.55) 0%, rgba(var(--aura), 0) 70%); opacity: 0; transition: opacity .4s; }
+.asgard .ring { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px rgba(var(--aura), 0.55); transition: box-shadow .3s; }
+.asgard .seat--chair .ring { border: 2px solid var(--frost); }
+.asgard .seat-name { position: relative; font-family: 'Marcellus SC', serif; font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-align: center; }
+.asgard .seat--chair .seat-name { color: var(--frost); font-weight: 700; }
+.asgard .seat-role { font-size: 12px; color: var(--muted); text-align: center; }
+.asgard .seat .wave { position: absolute; left: calc(100% + 6px); top: 50%; transform: translateY(-50%); color: var(--c); }
+
+.asgard.has-speaker .seat:not(.is-speaking) { opacity: 0.55; filter: saturate(0.5); }
+.asgard .seat.is-speaking .aura { opacity: 1; animation: pulse 1.4s ease-in-out infinite; }
+.asgard .seat.is-speaking .ring { box-shadow: 0 0 0 3px var(--c); }
+
+/* ---------- portraits and talking ---------- */
+.asgard .portrait { display: block; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: var(--bg, #141833); }
+.asgard .portrait svg { display: block; width: 100%; height: 100%; }
+.asgard .portrait[data-god="odin"] { --bg: #16233A; }
+.asgard .portrait[data-god="heimdall"] { --bg: #1C2A36; }
+.asgard .portrait[data-god="freyr"] { --bg: #23291A; }
+.asgard .portrait[data-god="hel"] { --bg: #07090D; }
+.asgard .portrait[data-god="freyja"] { --bg: #2A1820; }
+.asgard .portrait[data-god="loki"] { --bg: #1A1714; }
+.asgard .portrait[data-god="surtr"] { --bg: #2A120A; }
+
+.asgard .mouth { transform-box: fill-box; transform-origin: 50% 50%; }
+.asgard .portrait.talking .mouth { animation: talk .55s ease-in-out infinite; }
+.asgard .eyes { transform-box: fill-box; transform-origin: 50% 50%; animation: blink 5s infinite; }
+.asgard .bust { transform-box: fill-box; transform-origin: 50% 100%; }
+.asgard .portrait.talking .bust { animation: bob 1.6s ease-in-out infinite; }
+
+@keyframes talk { 0% { transform: scale(1, .6); } 25% { transform: scale(.85, 2.6); } 45% { transform: scale(1, 1.1); } 70% { transform: scale(.8, 2.9); } 100% { transform: scale(1, .7); } }
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes bob { 0%, 100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-1.5deg) translateY(-.6px); } 70% { transform: rotate(1.2deg) translateY(.4px); } }
+@keyframes pulse { 0%, 100% { transform: scale(.92); } 50% { transform: scale(1.08); } }
+
+.asgard .wave { display: inline-flex; align-items: center; gap: 2px; height: 12px; opacity: 0; transition: opacity .3s; }
+.asgard .wave.on { opacity: 1; }
+.asgard .wave i { display: block; width: 3px; height: 100%; border-radius: 2px; background: currentColor; animation: eq .9s ease-in-out infinite; }
+.asgard .wave i:nth-child(2) { animation-delay: .15s; }
+.asgard .wave i:nth-child(3) { animation-delay: .3s; }
+.asgard .wave i:nth-child(4) { animation-delay: .45s; }
+@keyframes eq { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+
+/* ---------- the floor (messages) ---------- */
+.asgard .floor { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 24px; }
+.asgard .floor-inner { max-width: 780px; min-height: 100%; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; }
+
+.asgard .welcome { margin: auto 0; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.asgard .welcome-title { font-family: 'Marcellus SC', serif; font-size: 20px; letter-spacing: 0.1em; color: var(--ink); }
+
+.asgard .msg { display: flex; gap: 14px; align-items: flex-start; animation: rise .35s ease-out; }
+.asgard .msg-face { position: sticky; top: 8px; width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px var(--accent); }
+.asgard .msg-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+
+.asgard .tablet { display: flex; flex-direction: column; gap: 6px; padding: 14px 20px 12px; border-radius: 4px; border-top: 3px solid var(--accent); background: var(--marble); color: var(--stone-ink); }
+.asgard .tablet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.asgard .tablet-label { font-family: 'Marcellus SC', serif; font-weight: 700; font-size: 12px; letter-spacing: 0.16em; color: var(--label); }
+.asgard .tablet-text { font-size: 15px; line-height: 1.55; overflow-wrap: anywhere; }
+.asgard .tablet-text > :first-child { margin-top: 2px; }
+.asgard .tablet-text > :last-child { margin-bottom: 0; }
+.asgard .tablet-text p { margin: 0 0 10px; }
+.asgard .tablet-text h3 { margin: 18px 0 6px; font-family: 'Marcellus SC', serif; font-size: 14px; letter-spacing: 0.12em; color: var(--label); }
+.asgard .tablet-text h3:first-child { margin-top: 4px; }
+.asgard .tablet-text ol, .asgard .tablet-text ul { margin: 0 0 10px; padding-left: 22px; }
+.asgard .tablet-text li { margin: 4px 0; }
+.asgard .tablet-text li > ul, .asgard .tablet-text li > ol { margin: 4px 0 8px; }
+.asgard .tablet-text li::marker { color: var(--label); }
+.asgard .tablet-text strong { font-weight: 600; }
+.asgard .tablet-text code { padding: 0 4px; border-radius: 3px; background: rgba(28, 27, 38, 0.08); font: 0.9em ui-monospace, "Cascadia Code", Consolas, monospace; }
+
+.asgard .msg--dark .tablet { color: var(--ink); }
+.asgard .msg--dark .tablet-text code { background: rgba(0, 0, 0, 0.3); }
+.asgard .msg--odin .tablet { background: rgba(191, 211, 218, 0.08); border: 1px solid rgba(191, 211, 218, 0.5); border-top: 3px solid var(--frost); box-shadow: 0 0 0 6px rgba(127, 168, 217, 0.06), 0 18px 60px -30px rgba(127, 168, 217, 0.6); }
+/* Surtr: shows up only on errors, in embers */
+.asgard .msg--surtr { animation: rise .35s ease-out, quake .5s ease-in-out .35s 2; }
+.asgard .msg--surtr .tablet { background: #1E0F0A; border: 1px solid rgba(255, 122, 61, 0.5); border-top: 3px solid var(--accent); box-shadow: 0 0 0 6px rgba(255, 122, 61, 0.07), 0 18px 60px -30px rgba(255, 122, 61, 0.8); }
+.asgard .msg--surtr .tablet-text { font-size: 17px; font-weight: 600; color: #FFD9C4; }
+@keyframes quake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-3px) rotate(-.4deg); } 40% { transform: translateX(3px) rotate(.4deg); } 60% { transform: translateX(-2px); } 80% { transform: translateX(2px); } }
+.asgard .msg--hel .tablet { background: #11141B; border: 1px solid rgba(174, 184, 208, 0.45); border-top: 3px solid var(--accent); }
+
+.asgard .meta { display: flex; flex-wrap: wrap; gap: 4px 14px; padding-left: 2px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.asgard .meta span + span::before { content: "·"; margin-right: 14px; opacity: .6; }
+
+/* where Heimdall's facts come from */
+.asgard .turn-notes { display: flex; flex-direction: column; gap: 8px; padding: 10px 14px; border-radius: 4px; border: 1px dashed rgba(var(--aura), 0.45); color: var(--ink); font-size: 13px; line-height: 1.5; }
+.asgard .turn-notes-k { display: block; margin-bottom: 2px; font-family: 'Marcellus SC', serif; font-size: 11px; letter-spacing: 0.18em; color: var(--c); }
+.asgard .turn-notes ul { margin: 0; padding-left: 18px; }
+.asgard .turn-notes li { margin: 2px 0; overflow-wrap: anywhere; }
+.asgard .turn-notes a { color: var(--frost); }
+
+.asgard .msg--you { justify-content: flex-end; }
+.asgard .bubble { max-width: min(460px, 85%); padding: 10px 16px; border-radius: 4px; border: 1px solid rgba(var(--aurora), 0.5); background: rgba(var(--aurora), 0.08); font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+.asgard .bubble-k { display: block; font-family: 'Marcellus SC', serif; font-size: 11px; letter-spacing: 0.18em; color: rgb(var(--aurora)); margin-bottom: 2px; }
+.asgard .note { padding: 10px 14px; border-radius: 4px; border: 1px dashed rgba(191, 211, 218, 0.35); color: var(--muted); font-size: 14px; line-height: 1.5; }
+.asgard .note--error { border-color: rgba(224, 104, 90, 0.6); color: #F2A79D; }
+.asgard .closing { text-align: center; font-family: 'Marcellus SC', serif; font-size: 12px; letter-spacing: 0.18em; color: var(--muted); padding-top: 4px; }
+.asgard .round-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0 4px; font-family: 'Marcellus SC', serif; font-size: 12px; letter-spacing: 0.18em; color: var(--muted); }
+.asgard .round-divider::before, .asgard .round-divider::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.35; }
+.asgard .round-divider span { max-width: 70%; overflow-wrap: anywhere; text-align: center; }
+
+.asgard .caret { display: inline-block; margin-left: 1px; animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+.asgard .thinking { display: inline-flex; gap: 5px; padding: 6px 0; }
+.asgard .thinking i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .3; animation: think 1.2s infinite; }
+.asgard .thinking i:nth-child(2) { animation-delay: .2s; }
+.asgard .thinking i:nth-child(3) { animation-delay: .4s; }
+@keyframes think { 0%, 100% { opacity: .25; } 40% { opacity: .9; } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- composer ---------- */
+.asgard .composer { flex-shrink: 0; padding: 12px 24px 20px; border-top: 1px solid rgba(191, 211, 218, 0.16); }
+.asgard .composer > * { max-width: 780px; margin-left: auto; margin-right: auto; }
+.asgard .compose-row { display: flex; gap: 10px; }
+.asgard .compose-row input { flex: 1; min-width: 0; height: 48px; padding: 0 16px; border-radius: 4px; border: 1px solid rgba(191, 211, 218, 0.4); background: var(--field); color: var(--ink); font-size: 15px; }
+.asgard .compose-row input::placeholder { color: #8D8EA6; }
+.asgard .compose-row input:focus-visible { outline: 2px solid var(--frost); outline-offset: 1px; }
+.asgard .primary { height: 48px; padding: 0 22px; border: 0; border-radius: 4px; background: var(--frost); color: var(--night); font-family: 'Marcellus SC', serif; font-weight: 700; font-size: 14px; letter-spacing: 0.14em; cursor: pointer; }
+.asgard .primary:disabled { opacity: .5; cursor: progress; }
+.asgard .primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.asgard .compose-row .ghost { height: 48px; padding: 0 18px; border: 1px solid rgba(191, 211, 218, 0.4); border-radius: 4px; background: none; color: var(--frost); font-family: 'Marcellus SC', serif; font-size: 13px; letter-spacing: 0.12em; white-space: nowrap; cursor: pointer; }
+.asgard .compose-row .ghost:hover { border-color: var(--frost); }
+.asgard .compose-row .ghost:disabled { opacity: .5; cursor: progress; }
+.asgard .compose-row .ghost:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- disclaimer ---------- */
+.asgard .disclaimer { flex-shrink: 0; padding: 8px 24px; border-top: 1px solid rgba(240, 184, 90, 0.45); background: rgba(240, 184, 90, 0.12); color: #F5D49A; font-size: 13px; line-height: 1.4; text-align: center; }
+.asgard .disclaimer b { font-weight: 600; color: #FBE3B6; }
+
+/* ---------- ledger ---------- */
+.asgard .ledger { width: 340px; flex-shrink: 0; overflow-y: auto; padding: 24px; border-left: 1px solid var(--line); background: var(--night-2); display: flex; flex-direction: column; gap: 20px; }
+.asgard .ledger-head { display: flex; flex-direction: column; gap: 4px; }
+.asgard .ledger-title { font-family: 'Marcellus SC', serif; font-weight: 700; font-size: 15px; letter-spacing: 0.18em; color: var(--frost); }
+.asgard .ledger-title.small { font-size: 12px; }
+.asgard .ledger-sub { font-size: 13px; color: var(--muted); }
+.asgard .ledger-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.asgard .ledger-item { --c: #fff; padding: 8px 12px 6px; margin: 0 -12px; border-radius: 4px; border: 1px solid transparent; transition: background .3s, border-color .3s; }
+.asgard .ledger-row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 0; border: 0; background: none; color: inherit; text-align: left; }
+.asgard .ledger-row:not(:disabled) { cursor: pointer; }
+.asgard .ledger-row:focus-visible { outline: 2px solid var(--frost); outline-offset: 4px; border-radius: 4px; }
+.asgard .ledger-item.is-spoken:hover { background: rgba(242, 237, 225, 0.07); border-color: var(--c); }
+.asgard .ledger-bar { display: block; height: 2px; margin: 6px 0 0 42px; background: rgba(191, 211, 218, 0.1); border-radius: 2px; }
+.asgard .ledger-bar i { display: block; height: 100%; background: var(--c); border-radius: 2px; opacity: .8; transition: width .4s; }
+.asgard .ledger-face { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; overflow: hidden; opacity: .55; transition: opacity .3s; }
+.asgard .ledger-name { flex: 1; font-size: 14px; color: var(--muted); }
+.asgard .ledger-name span { color: var(--muted); }
+.asgard .ledger-status { font-size: 12px; color: var(--muted); }
+.asgard .ledger-item.is-spoken .ledger-face { opacity: 1; }
+.asgard .ledger-item.is-spoken .ledger-name { color: #E4E0D6; }
+.asgard .ledger-item.is-speaking { background: rgba(242, 237, 225, 0.07); border-color: var(--c); }
+.asgard .ledger-item.is-speaking .ledger-face { opacity: 1; }
+.asgard .ledger-item.is-speaking .ledger-name { color: var(--ink); }
+.asgard .ledger-item.is-speaking .ledger-status, .asgard .ledger-item.is-spoken .ledger-status { color: var(--c); font-variant-numeric: tabular-nums; }
+
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .asgard .brand, .asgard .now { min-width: 0; }
+  .asgard .eyebrow { display: none; }
+  .asgard .ledger { display: none; }
+}
+@media (max-width: 720px) {
+  .asgard { --seat: 48px; }
+  .asgard .top { height: auto; flex-wrap: wrap; gap: 8px 12px; padding: 12px 16px; }
+  .asgard .brand { min-width: 0; font-size: 16px; }
+  .asgard .now { min-width: 0; margin-left: auto; flex-wrap: wrap; gap: 8px; }
+  .asgard .question { order: 3; flex-basis: 100%; align-items: flex-start; text-align: left; }
+  .asgard .eyebrow { display: none; }
+  .asgard .question-text { font-size: 14px; color: #C9C9D6; }
+  .asgard .council { padding-top: 8px; }
+  .asgard .seat { width: calc(var(--seat) + 14px); gap: 4px; }
+  .asgard .seat-name { font-size: 9px; letter-spacing: 0.04em; }
+  .asgard .seat-role, .asgard .seat .wave { display: none; }
+  .asgard .floor { padding: 12px 16px; }
+  .asgard .msg { gap: 10px; }
+  .asgard .msg-face { width: 34px; height: 34px; }
+  .asgard .tablet { padding: 12px 14px 10px; }
+  .asgard .tablet-text ol, .asgard .tablet-text ul { padding-left: 18px; }
+  .asgard .tablet-text, .asgard .bubble { font-size: 14px; }
+  .asgard .composer { padding: 10px 16px 16px; }
+  .asgard .primary { padding: 0 16px; }
+  .asgard .disclaimer { padding: 6px 16px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asgard .council::after, .asgard .portrait.talking .mouth, .asgard .portrait.talking .bust, .asgard .seat.is-speaking .aura, .asgard .wave i, .asgard .msg, .asgard .thinking i { animation: none; }
+}
